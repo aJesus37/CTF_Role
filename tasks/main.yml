@@ -29,3 +29,7 @@
   - name: Run vulnerability scan
     import_tasks: vulnerabilities.yml
     tags: [vuln]
+
+  - name: Run snmp scan
+    import_tasks: snmp.yml
+    tags: [snmp]
