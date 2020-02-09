@@ -73,6 +73,22 @@
     when: vuln == "true"
     tags: [vuln]
 
+  - name: Create new window named enum/snmp
+    shell: tmux new-window -n enum/snmp
+    tags: [snmp]
+
+  - name: Create snmp folder
+    file:
+      path: "{{ project_path + '/snmp' }}"
+      state: directory
+    tags: [snmp]
+
+  - name: Enter project folder with snmp window
+    shell: |
+      tmux send-keys -t "enum/snmp" C-z "cd {{ project_path }}/snmp \
+      && clear" Enter
+    tags: [snmp]
+
   - name: Create new window named enum/web_vuln
     shell: tmux new-window -n enum/web_vuln
     tags: [web_vuln]
