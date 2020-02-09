@@ -25,3 +25,7 @@
   - name: Run dns scan
     import_tasks: dns.yml
     tags: [dns]
+
+  - name: Run vulnerability scan
+    import_tasks: vulnerabilities.yml
+    tags: [vuln]

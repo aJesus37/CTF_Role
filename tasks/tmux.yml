@@ -70,3 +70,21 @@
       && clear" Enter
     when: vuln == "true"
 
+  - name: Create new window named enum/web_vuln
+    shell: tmux new-window -n enum/web_vuln
+    tags: [web_vuln]
+    when: web_vuln == "true"
+
+  - name: Create web_vuln folder
+    file:
+      path: "{{ project_path + '/web_vuln' }}"
+      state: directory
+    when: web_vuln == "true"
+    tags: [web_vuln]
+
+  - name: Enter project folder with vuln window
+    shell: |
+      tmux send-keys -t "enum/web_vuln" C-z "cd {{ project_path }}/web_vuln \
+      && clear" Enter
+    when: web_vuln == "true"
+    tags: [web_vuln]
