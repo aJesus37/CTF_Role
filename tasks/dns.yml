@@ -5,7 +5,7 @@
       tmux send-keys -t "recon/dns" C-z "domain='' && \
       dnsrecon -d $domain | tee {{ project_path }}/dns/dnsrecon.txt \
       && dnsenum $domain | tee {{ project_path }}/dns/dnsenum.txt"
-    when: domain == none
+    when: domain == "none"
 
   - name: Start dns recon
     tags: [dns]
@@ -13,4 +13,4 @@
       tmux send-keys -t "recon/dns" C-z "dnsrecon -d {{ domain }} | tee \
       {{ project_path }}/dns/dnsrecon.txt && dnsenum {{ domain }} | tee \
       {{ project_path }}/dns/dnsenum.txt" Enter
-    when: domain != none
+    when: domain != "none"
