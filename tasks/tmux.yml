@@ -1,10 +1,10 @@
 ---
   - name: Start tmux in background with given name
-    shell: tmux new-session -d -s {{ session_name }}
+    command: tmux new-session -d -s {{ session_name }}
     tags: [tmux, always]
 
   - name: Rename first window to debug
-    shell: tmux rename-window -t 0 debug
+    command: tmux rename-window -t 0 debug
     tags: [tmux, always]
 
   - name: Enter project folder with debug window
