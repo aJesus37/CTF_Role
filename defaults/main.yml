@@ -3,7 +3,7 @@
 project_path: ~/ctf_{{ ansible_date_time.date }}-{{ ansible_date_time.time }}
 session_name: CTF
 target: none
-web_protocol: http://
+web_protocol: http
 domain: none
 nmap: default
 vuln: false
