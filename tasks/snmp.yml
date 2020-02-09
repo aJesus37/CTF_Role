@@ -12,4 +12,6 @@
       set -o pipefail
       tmux send-keys -t "enum/snmp" C-z "onesixtyone {{ target }} \
       | tee 161.txt" Enter
+    register: onesixtyone
+    changed_when: "onesixtyone.rc != 0"
     
