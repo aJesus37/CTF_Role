@@ -6,4 +6,6 @@
       {{ web_protocol }}://{{ target }}/ -w \
       /usr/share/dirb/wordlists/big.txt -o \
       {{ project_path }}/web/scan.txt -x .php,.html,.txt" Enter
+    register: gobuster
+    changed_when: "gobuster.rc != 0"
     tags: [web]
