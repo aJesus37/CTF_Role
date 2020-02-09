@@ -1,3 +1,5 @@
 ---
   - name: Check if ping is available to host
     shell: ping -c 1 {{ target }} | tee {{ project_path }}/ping.txt
+    register: ping
+    changed_when: "ping.rc != 0"
