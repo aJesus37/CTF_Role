@@ -3,6 +3,6 @@
     tags: [web]
     shell: |
       tmux send-keys -t "recon/web" C-z "gobuster dir -u \
-      {{ web_protocol }}{{ target }}/ -w \
+      {{ web_protocol }}://{{ target }}/ -w \
       /usr/share/dirb/wordlists/big.txt -o \
       {{ project_path }}/web/scan.txt -x .php,.html,.txt" Enter
