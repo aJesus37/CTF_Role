@@ -10,6 +10,6 @@
     when: web_vuln == "true"
     shell: |
       tmux send-keys -t "enum/web_vuln" C-z "nikto -h {{ web_protocol }}://{{ target }} \
-      -output nikto.txt"
+      -output nikto.txt" Enter
     tags: [web_vuln]
     
