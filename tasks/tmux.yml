@@ -14,7 +14,7 @@
       && clear" Enter
 
   - name: Create new window named recon/nmap
-    shell: tmux new-window -n recon/nmap
+    command: tmux new-window -n recon/nmap
     tags: [nmap]
 
   - name: Create nmap folder
@@ -29,7 +29,7 @@
       && clear" Enter
 
   - name: Create new window named recon/web
-    shell: tmux new-window -n recon/web
+    command: tmux new-window -n recon/web
     tags: [web]
 
   - name: Create web folder
@@ -44,7 +44,7 @@
       && clear" Enter
 
   - name: Create new window named recon/dns
-    shell: tmux new-window -n recon/dns
+    command: tmux new-window -n recon/dns
     tags: [dns]
 
   - name: Create dns folder
@@ -59,7 +59,7 @@
       && clear" Enter
 
   - name: Create new window named enum/vuln
-    shell: tmux new-window -n enum/vuln
+    command: tmux new-window -n enum/vuln
     tags: [vuln]
     when: vuln == "true"
 
@@ -79,7 +79,7 @@
     tags: [vuln]
 
   - name: Create new window named enum/snmp
-    shell: tmux new-window -n enum/snmp
+    command: tmux new-window -n enum/snmp
     tags: [snmp]
 
   - name: Create snmp folder
@@ -96,7 +96,7 @@
     tags: [snmp]
 
   - name: Create new window named enum/web_vuln
-    shell: tmux new-window -n enum/web_vuln
+    command: tmux new-window -n enum/web_vuln
     tags: [web_vuln]
     when: web_vuln == "true"
 
