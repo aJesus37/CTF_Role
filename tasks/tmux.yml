@@ -1,10 +1,14 @@
 ---
   - name: Start tmux in background with given name
     command: tmux new-session -d -s {{ session_name }}
+    register: tmux_session
+    changed_when: "tmux_session.rc != 0"
     tags: [tmux, always]
 
   - name: Rename first window to debug
     command: tmux rename-window -t 0 debug
+    register: tmux_debug
+    changed_when: "tmux_debug.rc != 0"
     tags: [tmux, always]
 
   - name: Enter project folder with debug window
@@ -12,9 +16,13 @@
       set -o pipefail
       tmux send-keys -t "debug" C-z "cd {{ project_path }} \
       && clear" Enter
+    register: tmux_debug
+    changed_when: "tmux_debug_folder.rc != 0"
 
   - name: Create new window named recon/nmap
     command: tmux new-window -n recon/nmap
+    register: tmux_recon_nmap
+    changed_when: "tmux_recon_nmap.rc != 0"
     tags: [nmap]
 
   - name: Create nmap folder
@@ -27,9 +35,13 @@
       set -o pipefail
       tmux send-keys -t "recon/nmap" C-z "cd {{ project_path }}/nmap \
       && clear" Enter
+    register: tmux_nmap
+    changed_when: "tmux_nmap.rc != 0"
 
   - name: Create new window named recon/web
     command: tmux new-window -n recon/web
+    register: tmux_recon_web
+    changed_when: "tmux_recon_web.rc != 0"
     tags: [web]
 
   - name: Create web folder
@@ -42,9 +54,13 @@
       set -o pipefail
       tmux send-keys -t "recon/web" C-z "cd {{ project_path }}/web \
       && clear" Enter
+    register: tmux_web
+    changed_when: "tmux_web.rc != 0"
 
   - name: Create new window named recon/dns
     command: tmux new-window -n recon/dns
+    register: tmux_recon_dns
+    changed_when: "tmux_recon_dns.rc != 0"
     tags: [dns]
 
   - name: Create dns folder
@@ -57,6 +73,8 @@
       set -o pipefail
       tmux send-keys -t "recon/dns" C-z "cd {{ project_path }}/dns \
       && clear" Enter
+    register: tmux_dns
+    changed_when: "tmux_snmp.rc != 0"
 
   - name: Create new window named enum/vuln
     command: tmux new-window -n enum/vuln
@@ -80,6 +98,8 @@
 
   - name: Create new window named enum/snmp
     command: tmux new-window -n enum/snmp
+    register: tmux_snmp
+    changed_when: "tmux_snmp.rc != 0"
     tags: [snmp]
 
   - name: Create snmp folder
@@ -93,6 +113,8 @@
       set -o pipefail
       tmux send-keys -t "enum/snmp" C-z "cd {{ project_path }}/snmp \
       && clear" Enter
+    register: tmux_snmp
+    changed_when: "tmux_snmp.rc != 0"
     tags: [snmp]
 
   - name: Create new window named enum/web_vuln
