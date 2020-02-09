@@ -1,19 +1,19 @@
 ---
   - name: Start tmux in background with given name
-    command: tmux new-session -d -s {{ session_name }}
+    shell: tmux new-session -d -s {{ session_name }}
     tags: [tmux, always]
 
   - name: Rename first window to debug
-    command: tmux rename-window -t 0 debug
+    shell: tmux rename-window -t 0 debug
     tags: [tmux, always]
 
   - name: Enter project folder with debug window
-    command: |
+    shell: |
       tmux send-keys -t "debug" C-z "cd {{ project_path }} \
       && clear" Enter
 
   - name: Create new window named recon/nmap
-    command: tmux new-window -n recon/nmap
+    shell: tmux new-window -n recon/nmap
     tags: [nmap]
 
   - name: Create nmap folder
@@ -22,12 +22,12 @@
       state: directory
 
   - name: Enter project folder with nmap window
-    command: |
+    shell: |
       tmux send-keys -t "recon/nmap" C-z "cd {{ project_path }}/nmap \
       && clear" Enter
 
   - name: Create new window named recon/web
-    command: tmux new-window -n recon/web
+    shell: tmux new-window -n recon/web
     tags: [web]
 
   - name: Create web folder
@@ -36,12 +36,12 @@
       state: directory
 
   - name: Enter project folder with web window
-    command: |
+    shell: |
       tmux send-keys -t "recon/web" C-z "cd {{ project_path }}/web \
       && clear" Enter
 
   - name: Create new window named recon/dns
-    command: tmux new-window -n recon/dns
+    shell: tmux new-window -n recon/dns
     tags: [dns]
 
   - name: Create dns folder
@@ -50,13 +50,12 @@
       state: directory
 
   - name: Enter project folder with dns window
-    command: |
+    shell: |
       tmux send-keys -t "recon/dns" C-z "cd {{ project_path }}/dns \
       && clear" Enter
 
   - name: Create new window named enum/vuln
-    command: tmux new-window -n recon/dns
-    tags: [dns]
+    shell: tmux new-window -n enum/vuln
     when: vuln == "true"
 
   - name: Create vuln folder
@@ -66,7 +65,7 @@
     when: vuln == "true"
 
   - name: Enter project folder with vuln window
-    command: |
+    shell: |
       tmux send-keys -t "enum/vuln" C-z "cd {{ project_path }}/vuln \
       && clear" Enter
     when: vuln == "true"

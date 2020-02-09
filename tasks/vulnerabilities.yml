@@ -1,6 +1,4 @@
 ---
   - name: Run nmap scan to check for vulnerabilities on top ports
-    when: vul == "true"
-    command: |
-      tmux send-keys
+    shell: |
     
