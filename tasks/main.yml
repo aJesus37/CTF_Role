@@ -1,0 +1,27 @@
+---
+# tasks file for CTF_Role
+  - name: Check variables
+    import_tasks: variables.yml
+
+  - name: Start Project
+    import_tasks: project.yml
+
+  - name: Run ping test
+    import_tasks: ping.yml
+    tags: [ping, recon]
+  
+  - name: Start Tmux
+    import_tasks: tmux.yml
+    tags: [tmux]
+
+  - name: Run nmap scan
+    import_tasks: nmap.yml
+    tags: [nmap]
+
+  - name: Run web scan
+    import_tasks: gobuster.yml
+    tags: [nmap]
+
+  - name: Run dns scan
+    import_tasks: dns.yml
+    tags: [dns]

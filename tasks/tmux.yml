@@ -1,0 +1,73 @@
+---
+  - name: Start tmux in background with given name
+    command: tmux new-session -d -s {{ session_name }}
+    tags: [tmux, always]
+
+  - name: Rename first window to debug
+    command: tmux rename-window -t 0 debug
+    tags: [tmux, always]
+
+  - name: Enter project folder with debug window
+    command: |
+      tmux send-keys -t "debug" C-z "cd {{ project_path }} \
+      && clear" Enter
+
+  - name: Create new window named recon/nmap
+    command: tmux new-window -n recon/nmap
+    tags: [nmap]
+
+  - name: Create nmap folder
+    file:
+      path: "{{ project_path +'/nmap' }}"
+      state: directory
+
+  - name: Enter project folder with nmap window
+    command: |
+      tmux send-keys -t "recon/nmap" C-z "cd {{ project_path }}/nmap \
+      && clear" Enter
+
+  - name: Create new window named recon/web
+    command: tmux new-window -n recon/web
+    tags: [web]
+
+  - name: Create web folder
+    file:
+      path: "{{ project_path + '/web' }}"
+      state: directory
+
+  - name: Enter project folder with web window
+    command: |
+      tmux send-keys -t "recon/web" C-z "cd {{ project_path }}/web \
+      && clear" Enter
+
+  - name: Create new window named recon/dns
+    command: tmux new-window -n recon/dns
+    tags: [dns]
+
+  - name: Create dns folder
+    file:
+      path: "{{ project_path + '/dns' }}"
+      state: directory
+
+  - name: Enter project folder with dns window
+    command: |
+      tmux send-keys -t "recon/dns" C-z "cd {{ project_path }}/dns \
+      && clear" Enter
+
+  - name: Create new window named enum/vuln
+    command: tmux new-window -n recon/dns
+    tags: [dns]
+    when: vuln == "true"
+
+  - name: Create vuln folder
+    file:
+      path: "{{ project_path + '/vuln' }}"
+      state: directory
+    when: vuln == "true"
+
+  - name: Enter project folder with vuln window
+    command: |
+      tmux send-keys -t "enum/vuln" C-z "cd {{ project_path }}/vuln \
+      && clear" Enter
+    when: vuln == "true"
+

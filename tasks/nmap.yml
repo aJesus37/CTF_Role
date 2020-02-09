@@ -1,0 +1,22 @@
+---
+  - name: Start nmap scan on target host
+    tags: [nmap]
+    command: |
+      tmux send-keys -t "recon/nmap" C-z "nmap -sV -sC {{ target }} \
+      -oA {{ project_path }}/nmap/nmap_scan_{{ nmap }}" Enter
+    when: nmap == "default"
+
+  - name: Start nmap scan on target host
+    tags: [nmap]
+    command: |
+      tmux send-keys -t "recon/nmap" C-z "nmap -p- -sV -sC {{ target }} \
+      -oA {{ project_path }}/nmap/nmap_scan_{{ nmap }}" Enter
+    when: nmap == "all_ports"
+
+    - name: Start nmap scan on target host
+    tags: [nmap]
+    command: |
+      tmux send-keys -t "recon/nmap" C-z "nmap -p0- -v -A -T4 {{ target }} \
+      -oA {{ project_path }}/nmap/nmap_scan_{{ nmap }}" Enter
+    when: nmap == "aggressive"
+  

@@ -1,0 +1,9 @@
+---
+  - name: Check if variables are all right
+    debug:
+      msg: "No target given. Add a target using -e 'target=x.x.x.x'"
+    when: target == "none"
+
+  - name: Check if variables are all right
+    meta: end_play
+    when: target == "none"

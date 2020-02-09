@@ -1,0 +1,3 @@
+---
+  - name: Check if ping is available to host
+    command: ping -c 1 {{ target }} | tee {{ project_folder }}/ping.txt

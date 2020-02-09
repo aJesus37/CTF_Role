@@ -1,0 +1,5 @@
+---
+  - name: Create project Folder
+    file:
+      path: '{{ project_path }}'
+      state: directory
