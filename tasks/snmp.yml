@@ -14,4 +14,3 @@
       | tee 161.txt" Enter
     register: onesixtyone
     changed_when: "onesixtyone.rc != 0"
-    
