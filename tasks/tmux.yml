@@ -56,6 +56,7 @@
 
   - name: Create new window named enum/vuln
     shell: tmux new-window -n enum/vuln
+    tags: [vuln]
     when: vuln == "true"
 
   - name: Create vuln folder
@@ -63,12 +64,14 @@
       path: "{{ project_path + '/vuln' }}"
       state: directory
     when: vuln == "true"
+    tags: [vuln]
 
   - name: Enter project folder with vuln window
     shell: |
       tmux send-keys -t "enum/vuln" C-z "cd {{ project_path }}/vuln \
       && clear" Enter
     when: vuln == "true"
+    tags: [vuln]
 
   - name: Create new window named enum/web_vuln
     shell: tmux new-window -n enum/web_vuln
