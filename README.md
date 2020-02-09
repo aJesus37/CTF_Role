@@ -1,4 +1,4 @@
-Role Name
+CTF_Role
 =========
 
 A brief description of the role goes here.
