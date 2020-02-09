@@ -4,6 +4,8 @@
       set -o pipefail
       tmux send-keys -t "enum/snmp" C-z "snmp-check {{ target }} \
       | tee snmp_scan.txt" Enter
+    register: snmp
+    changed_when: "snmp-check.rc != 0"
 
   - name: Use snmp-check with default communities on target
     shell: |
