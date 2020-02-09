@@ -13,7 +13,7 @@
       -oA {{ project_path }}/nmap/nmap_scan_{{ nmap }}" Enter
     when: nmap == "all_ports"
 
-    - name: Start nmap scan on target host
+  - name: Start nmap scan on target host
     tags: [nmap]
     shell: |
       tmux send-keys -t "recon/nmap" C-z "nmap -p0- -v -A -T4 {{ target }} \
