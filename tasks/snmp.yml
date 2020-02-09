@@ -1,11 +1,13 @@
 ---
   - name: Use snmp-check with public on target
     shell: |
+      set -o pipefail
       tmux send-keys -t "enum/snmp" C-z "snmp-check {{ target }} \
       | tee snmp_scan.txt" Enter
 
   - name: Use snmp-check with default communities on target
     shell: |
+      set -o pipefail
       tmux send-keys -t "enum/snmp" C-z "onesixtyone {{ target }} \
       | tee 161.txt" Enter
     

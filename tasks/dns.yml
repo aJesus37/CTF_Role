@@ -2,6 +2,7 @@
   - name: Let window ready for dns tests
     tags: [dns]
     shell: |
+      set -o pipefail
       tmux send-keys -t "recon/dns" C-z "domain='' && \
       dnsrecon -d $domain | tee {{ project_path }}/dns/dnsrecon.txt \
       && dnsenum $domain | tee {{ project_path }}/dns/dnsenum.txt"
@@ -10,6 +11,7 @@
   - name: Start dns recon
     tags: [dns]
     shell: |
+      set -o pipefail
       tmux send-keys -t "recon/dns" C-z "dnsrecon -d {{ domain }} | tee \
       {{ project_path }}/dns/dnsrecon.txt && dnsenum {{ domain }} | tee \
       {{ project_path }}/dns/dnsenum.txt" Enter

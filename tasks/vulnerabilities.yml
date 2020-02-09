@@ -2,6 +2,7 @@
   - name: Run nmap scan to check for vulnerabilities on top ports
     when: vuln == "true"
     shell: |
+      set -o pipefail
       tmux send-keys -t "enum/vuln" C-z "nmap --script \
       vulscan/vulscan.nse -sV {{ target }} -oA vulnscan" Enter
     tags: [vuln]
@@ -9,6 +10,7 @@
   - name: Run nikto scan to check for vulnerabilities on web
     when: web_vuln == "true"
     shell: |
+      set -o pipefail
       tmux send-keys -t "enum/web_vuln" C-z "nikto -h {{ web_protocol }}://{{ target }} \
       -output nikto.txt" Enter
     tags: [web_vuln]

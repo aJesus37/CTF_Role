@@ -9,6 +9,7 @@
 
   - name: Enter project folder with debug window
     shell: |
+      set -o pipefail
       tmux send-keys -t "debug" C-z "cd {{ project_path }} \
       && clear" Enter
 
@@ -23,6 +24,7 @@
 
   - name: Enter project folder with nmap window
     shell: |
+      set -o pipefail
       tmux send-keys -t "recon/nmap" C-z "cd {{ project_path }}/nmap \
       && clear" Enter
 
@@ -37,6 +39,7 @@
 
   - name: Enter project folder with web window
     shell: |
+      set -o pipefail
       tmux send-keys -t "recon/web" C-z "cd {{ project_path }}/web \
       && clear" Enter
 
@@ -51,6 +54,7 @@
 
   - name: Enter project folder with dns window
     shell: |
+      set -o pipefail
       tmux send-keys -t "recon/dns" C-z "cd {{ project_path }}/dns \
       && clear" Enter
 
@@ -68,6 +72,7 @@
 
   - name: Enter project folder with vuln window
     shell: |
+      set -o pipefail
       tmux send-keys -t "enum/vuln" C-z "cd {{ project_path }}/vuln \
       && clear" Enter
     when: vuln == "true"
@@ -85,6 +90,7 @@
 
   - name: Enter project folder with snmp window
     shell: |
+      set -o pipefail
       tmux send-keys -t "enum/snmp" C-z "cd {{ project_path }}/snmp \
       && clear" Enter
     tags: [snmp]
@@ -103,6 +109,7 @@
 
   - name: Enter project folder with vuln window
     shell: |
+      set -o pipefail
       tmux send-keys -t "enum/web_vuln" C-z "cd {{ project_path }}/web_vuln \
       && clear" Enter
     when: web_vuln == "true"

@@ -2,6 +2,7 @@
   - name: Run gobuster on target
     tags: [web]
     shell: |
+      set -o pipefail
       tmux send-keys -t "recon/web" C-z "gobuster dir -u \
       {{ web_protocol }}://{{ target }}/ -w \
       /usr/share/dirb/wordlists/big.txt -o \
