@@ -6,13 +6,13 @@
   - name: Start Project
     import_tasks: project.yml
 
-  - name: Run ping test
-    import_tasks: ping.yml
-    tags: [ping, recon]
-
   - name: Start Tmux
     import_tasks: tmux.yml
     tags: [tmux]
+
+  - name: Run ping test
+    import_tasks: ping.yml
+    tags: [ping, recon]
 
   - name: Run nmap scan
     import_tasks: nmap.yml
