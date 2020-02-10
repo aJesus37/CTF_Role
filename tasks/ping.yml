@@ -2,6 +2,6 @@
   - name: Check if ping is available to host
     shell: |
       set -o pipefail
-      ping -c 1 {{ target }} | tee {{ project_path }}/ping.txt
+      tmux send-keys -t "debug" "ping -c 1 {{ target }} | tee {{ project_path }}/ping.txt" Enter
     register: ping
     changed_when: "ping.rc != 0"
