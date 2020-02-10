@@ -74,7 +74,7 @@
       tmux send-keys -t "recon/dns" C-z "cd {{ project_path }}/dns \
       && clear" Enter
     register: tmux_dns
-    changed_when: "tmux_snmp.rc != 0"
+    changed_when: "tmux_dns.rc != 0"
 
   - name: Create new window named enum/vuln
     command: tmux new-window -n enum/vuln
@@ -113,8 +113,8 @@
       set -o pipefail
       tmux send-keys -t "enum/snmp" C-z "cd {{ project_path }}/snmp \
       && clear" Enter
-    register: tmux_snmp
-    changed_when: "tmux_snmp.rc != 0"
+    register: tmux_snmp_folder
+    changed_when: "tmux_snmp_folder.rc != 0"
     tags: [snmp]
 
   - name: Create new window named enum/web_vuln
