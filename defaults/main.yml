@@ -7,3 +7,4 @@ web_protocol: http
 domain: none
 nmap: default
 vuln: false
+ansible_shell_executable: /bin/bash
