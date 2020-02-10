@@ -10,7 +10,7 @@
   - name: Use onesixtyone with default communities on target
     shell: |
       set -o pipefail
-      tmux send-keys -t "enum/snmp" C-z "onesixtyone {{ target }} \
+      tmux send-keys -t "enum/snmp" "onesixtyone {{ target }} \
       | tee 161.txt" Enter
     register: onesixtyone
     changed_when: "onesixtyone.rc != 0"
