@@ -16,7 +16,7 @@
       set -o pipefail
       tmux send-keys -t "debug" C-z "cd {{ project_path }} \
       && clear" Enter
-    register: tmux_debug
+    register: tmux_debug_folder
     changed_when: "tmux_debug_folder.rc != 0"
 
   - name: Create new window named recon/nmap
